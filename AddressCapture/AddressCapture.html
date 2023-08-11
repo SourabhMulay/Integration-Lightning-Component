@@ -1,0 +1,104 @@
+<template>    
+        <template if:true={popUp}>
+        <div class="custom-modal">
+            <section role="dialog" class="slds-fade-in-open">
+                
+                <div class="">
+                    <header class="slds-modal__header">
+                        <span class="slds-modal__close">
+                           <!-- <lightning-icon icon-name="utility:close" style="cursor: pointer;" id="closeButton" onclick={HandleClose} variant="inverse" alternative-text="close"></lightning-icon>-->
+                            <lightning-button icon-name="utility:close" style="cursor: pointer;" onclick={HandleClose} ></lightning-button>
+                        </span>
+                        <h2 class="slds-text-heading_medium slds-hyphenate">Loqate Component</h2>
+                    </header>
+
+                    <div style="display:inline-flex; padding:2px;">
+
+                    <template if:true={mainAddress}>
+                            <lightning-card  variant="Narrow"  title="Existing Main Address" icon-name="standard:address">
+                                <div class="slds-p-horizontal_small"> 
+                                    <div style="width:400px; margin-left:20px;margin-top:12px;">
+                                    <ul>
+                                        <li><b>Country: </b> {leadAddressToShow.countrycode}</li>
+                                        <li><b>City: </b> {leadAddressToShow.city}</li>
+                                        <li><b>Street: </b> {leadAddressToShow.street}</li>
+                                        <li><b>PostalCode: </b> {leadAddressToShow.postalcode}</li>
+                                        <li><b>State: </b> {leadAddressToShow.statecode}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            </lightning-card>
+                    </template>
+
+                    <template if:true={ExtraAddress}>
+                        <lightning-card  variant="Narrow"  title="Existing Extra Address" icon-name="standard:address">
+                        <div class="slds-p-horizontal_small"> 
+                        <div style="width: 400px;margin-left:20px;margin-top:12px;">
+                            <ul>
+                                <li><b>Country: </b> {leadAddressToShow.countrycode}</li>
+                                <li><b>City: </b> {leadAddressToShow.city}</li>
+                                <li><b>Street: </b> {leadAddressToShow.street}</li>
+                                <li><b>PostalCode: </b> {leadAddressToShow.postalcode}</li>
+                                <li><b>State: </b> {leadAddressToShow.statecode}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </lightning-card>
+                    </template>
+                    <template if:true={showAddress}>
+                        <lightning-card  variant="Narrow"  title="Validate the Address" icon-name="standard:address">
+                        <div class="slds-p-horizontal_small"> 
+                        <div style="margin-left:20px;margin-top:12px;">
+                            <ul>
+                                <li><b>Country: </b> {EndAddress1.CountryName}</li>
+                                <li><b>City: </b> {EndAddress1.City}</li>
+                                <li><b>Street: </b> {LINE}</li>
+                                <li><b>PostalCode: </b> {EndAddress1.PostalCode}</li>
+                                <li><b>State: </b> {EndAddress1.Province}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </lightning-card>
+
+
+                    </template>
+                </div>
+
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <template if:true={handleExistingAddresssLogic}>
+                            <lightning-combobox value={selectedLeadAddress} required="true" options={LeadAddress} label="Would you like to update the main or the extra address?" hidden={handleExistingAddresssLogic} onchange={LeadAddressChangeHandler}></lightning-combobox>   
+                        </template>
+                        <lightning-combobox  value={selectedCounrtryOptions} options={countryOptions} label="Countries" onchange={CountryChangeHandler}></lightning-combobox>
+                    <div>
+                        <lightning-input  type="text" value={AddressToShow} label="Address" disabled={checkSelectedCountryOption} onpaste={InputOnchange_Paste} onchange={InputOnchange}>
+                        </lightning-input>
+                        <div>
+                            <template for:each={RenderList} for:item="prop" for:index="index">
+                                <li class="slds-item slds-has-hover" data-index={index} style="list-style-type:none; overflow:auto; cursor:pointer; padding:5px; margin:2px;" data-key={prop.Id} key={prop.Id} onclick={SelectHandler}>{prop.Text}</li>
+                            </template>
+                        </div>
+                            <template for:each={RenderList_Address} for:item="prop">
+                                <li class="slds-item slds-has-hover" style="list-style-type:none; overflow:auto;cursor:pointer; padding:5px; margin:2px;" data-key={prop.Id} key={prop.Id} onclick={addressSelectHandler}>{prop.Text}</li>
+                        </template>
+                    </div>
+                    </div>
+                    <div style="padding: 10px;width:500px;margin-right:7px">
+                        <h1><b>Country :</b>{selectedCounrtryOptions}</h1>
+                        <h1><b>Selected Address :</b> {AddressToShow}</h1>
+                    </div>
+                    <footer class="slds-modal__footer">
+                       
+                         <!-- <lightning-button variant="brand" style="cursor:pointer; margin:5px;" label="Validate" onclick={ValidateAddressHandler} title="Validate" ></lightning-button> -->
+                        
+                         <!-- <lightning-button variant="brand" label="Cancel" onclick={CancelHandler} title="Cancel"></lightning-button> -->
+                         <template if:true={IsAccId}>
+                            <lightning-button variant="brand"  disabled={CreateButtonHiddenLogic} style="cursor: pointer; margin:10px;" label="Create Address" onclick={saveHandler} title="Create Address"></lightning-button>
+                        </template>
+                        
+                        <lightning-button variant="brand" disabled={LeadLogic} hidden={IsAccId} style="cursor: pointer;" label="Update Lead " onclick={UpdateLeadHandler} title="Update Lead"></lightning-button>
+                    </footer>
+                </div>
+            </section>
+        </div>
+    </template>
+</template>
