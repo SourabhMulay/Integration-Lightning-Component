@@ -18,4 +18,4 @@ Sure, here are the high-level steps for setting up a Salesforce project:
    ```
 
 
-Check out Loqate Documentation: <a href="https://www.loqate.com/developers/api/">Loqate API</a>
+Check out Loqate Documentation: <a href="https://www.loqate.com/developers/api/" target="__blank">Loqate API</a>
