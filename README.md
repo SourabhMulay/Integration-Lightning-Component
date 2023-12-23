@@ -1,4 +1,4 @@
-# Lightning Web component- Integration Of Loqate with Salesforce.
+# Lightning Web component- Integration Of Address Verification with Salesforce.
 
 Integrated Loqate API with Salesforce through Lightning web Component. Used Loqate Address verification functionality and implemented lWC component that Validate the Address and gives end user ability to search the address and modify existing address as per end users requirements. Component implemented In MVC model, server side implemented using APEX and Client side implemented in vanila JS. Designed using Salesforce lightning design system. 
 
@@ -17,5 +17,3 @@ Sure, here are the high-level steps for setting up a Salesforce project:
    cd MyProject
    ```
 
-
-Check out Loqate Documentation: <a href="https://www.loqate.com/developers/api/" target="_blank">Loqate API</a>
